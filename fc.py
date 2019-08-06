@@ -14,6 +14,7 @@ class fc:
 		self.trainable_variables = [self.w, self.b]
 
 	def flow(self, input_tensor, activation = 'TANH'):
+		# print(np.shape(input_tensor[0]))
 		lin_act = tf.matmul(input_tensor, self.w) + self.b
 		if(activation == 'RELU'):
 			return tf.nn.relu(lin_act)

@@ -30,16 +30,16 @@ class lstm:
 		self.trainable_variables = [self.wf, self.uf, self.bf, self.wi, self.ui, self.bi, self.wo, self.uo, self.bo, self.wc, self.uc, self.bc]
 
 	def flow(self, input_tensors):
-		self.time_steps = time_steps
-		h = tf.constant(0.0)
-		c = tf.constant(0.0)
+		length = input_tensors[0].get_shape()[0]
+
+		h = tf.constant(0.0, shape = [length, self.output_dims])
+		c = tf.constant(0.0, shape = [length, self.output_dims])
 		H = []
 		for input_tensor in input_tensors:
-			ft = tf.nn.sigmoid(tf.matmul(input_tensor, self.wf) + tf.matmul(h, self.uf) + bf)
-			it = tf.nn.sigmoid(tf.matmul(input_tensor, self.wi) + tf.matmul(h, self.ui) + bi)
-			ot = tf.nn.sigmoid(tf.matmul(input_tensor, self.wo) + tf.matmul(h, self.uo) + bo)
-			c = ft * c + it * tf.nn.tanh(tf.matmul(input_tensor, self.wc) + tf.matmul(h, self.uc) + bc)
+			ft = tf.nn.sigmoid(tf.matmul(input_tensor, self.wf) + tf.matmul(h, self.uf) + self.bf)
+			it = tf.nn.sigmoid(tf.matmul(input_tensor, self.wi) + tf.matmul(h, self.ui) + self.bi)
+			ot = tf.nn.sigmoid(tf.matmul(input_tensor, self.wo) + tf.matmul(h, self.uo) + self.bo)
+			c = ft * c + it * tf.nn.tanh(tf.matmul(input_tensor, self.wc) + tf.matmul(h, self.uc) + self.bc)
 			h = ot * tf.nn.tanh(c)
 			H.append(h)
 		return H
-	
