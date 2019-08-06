@@ -7,7 +7,7 @@ from util import get_gather_map
 import config
 import numpy as np
 import tensorflow.contrib.eager as tfe
-
+#need to move to static graphs: this is not working
 # input_tensor has dimensions [time_step, batch_size, vector_dimensions]
 '''
 Current Design
