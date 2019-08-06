@@ -27,7 +27,9 @@ class lstm:
 		self.uc = tf.get_variable(name = 'lstm_u_cell_state', shape = u_shape)
 		self.bc = tf.get_variable(name = 'lstm_b_cell_state', shape = b_shape)
 
-	def create_flow(self, input_tensors):
+		self.trainable_variables = [self.wf, self.uf, self.bf, self.wi, self.ui, self.bi, self.wo, self.uo, self.bo, self.wc, self.uc, self.bc]
+
+	def flow(self, input_tensors):
 		self.time_steps = time_steps
 		h = tf.constant(0.0)
 		c = tf.constant(0.0)
@@ -40,5 +42,4 @@ class lstm:
 			h = ot * tf.nn.tanh(c)
 			H.append(h)
 		return H
-
 	

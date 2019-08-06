@@ -11,17 +11,17 @@ class fc:
 		
 		self.w = tf.get_variable(name = 'w', shape = w_shape)
 		self.b = tf.get_variable(name = 'b', shape = b_shape)
+		self.trainable_variables = [self.w, self.b]
 
-	def create_flow(self, input_tensor, activation = 'TANH'):
+	def flow(self, input_tensor, activation = 'TANH'):
 		lin_act = tf.matmul(input_tensor, self.w) + self.b
 		if(activation == 'RELU'):
 			return tf.nn.relu(lin_act)
-		else if(activation == 'SIGMOID'):
+		elif(activation == 'SIGMOID'):
 			return tf.nn.sigmoid(lin_act)
-		else if(activation == 'TANH'):
+		elif(activation == 'TANH'):
 			return tf.nn.tanh(lin_act)
-		else if(activation == 'SOFTMAX'):
+		elif(activation == 'SOFTMAX'):
 			return tf.nn.softmax(lin_act)
-		else
+		else:
 			return lin_act
-	
