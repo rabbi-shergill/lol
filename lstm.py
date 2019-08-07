@@ -29,11 +29,9 @@ class lstm:
 
 		self.trainable_variables = [self.wf, self.uf, self.bf, self.wi, self.ui, self.bi, self.wo, self.uo, self.bo, self.wc, self.uc, self.bc]
 
-	def flow(self, input_tensors):
-		length = input_tensors[0].get_shape()[0]
-
-		h = tf.constant(0.0, shape = [length, self.output_dims])
-		c = tf.constant(0.0, shape = [length, self.output_dims])
+	def flow(self, input_tensors, batch_size = 1):
+		h = tf.constant(0.0, shape = [batch_size, self.output_dims])
+		c = tf.constant(0.0, shape = [batch_size, self.output_dims])
 		H = []
 		for input_tensor in input_tensors:
 			ft = tf.nn.sigmoid(tf.matmul(input_tensor, self.wf) + tf.matmul(h, self.uf) + self.bf)

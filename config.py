@@ -9,11 +9,8 @@ def window_size():
 def epochs():
 	return 100
 
-def learning_rate(loss, epoch, steps):
+def learning_rate(epoch, steps):
 	return 0.01
-
-def optimizer(loss = 0, epoch = 0, steps = 0):		#epoch and steps sent in this case
-	return tf.train.AdamOptimizer(learning_rate(loss, epoch, steps))
 
 def lstm_layers():
 	return [128, 128, 64]

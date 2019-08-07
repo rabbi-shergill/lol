@@ -26,11 +26,11 @@ class network:
 
 		self.output = fc.fc(last_dims, 10)
 
-	def flow(self, input_tensors):
+	def flow(self, input_tensors, batch_size = 1):
 
 		output_tensor = input_tensors
 		for lstm_layer in self.lstm_layers:
-			output_tensor = lstm_layer.flow(output_tensor)
+			output_tensor = lstm_layer.flow(output_tensor, batch_size)
 		output_tensor = output_tensor[-1]
 		for fc_layer in self.fc_layers:
 			output_tensor = fc_layer.flow(output_tensor)
