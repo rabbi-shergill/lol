@@ -11,21 +11,21 @@ class lstm:
 		b_shape = [output_dims]
 		
 		# forget gate parameters
-		self.wf = tf.get_variable(name = 'lstm_w_forget_gate', shape = w_shape)
-		self.uf = tf.get_variable(name = 'lstm_u_forget_gate', shape = u_shape)
-		self.bf = tf.get_variable(name = 'lstm_b_forget_gate', shape = b_shape)
+		self.wf = tf.get_variable(name = 'lstm_w_forget_gate', shape = w_shape, initializer = tf.glorot_normal_initializer())
+		self.uf = tf.get_variable(name = 'lstm_u_forget_gate', shape = u_shape, initializer = tf.glorot_normal_initializer())
+		self.bf = tf.get_variable(name = 'lstm_b_forget_gate', shape = b_shape, initializer = tf.glorot_normal_initializer())
 		# input gate parameters
-		self.wi = tf.get_variable(name = 'lstm_w_input_gate', shape = w_shape)
-		self.ui = tf.get_variable(name = 'lstm_u_input_gate', shape = u_shape)
-		self.bi = tf.get_variable(name = 'lstm_b_input_gate', shape = b_shape)
+		self.wi = tf.get_variable(name = 'lstm_w_input_gate', shape = w_shape, initializer = tf.glorot_normal_initializer())
+		self.ui = tf.get_variable(name = 'lstm_u_input_gate', shape = u_shape, initializer = tf.glorot_normal_initializer())
+		self.bi = tf.get_variable(name = 'lstm_b_input_gate', shape = b_shape, initializer = tf.glorot_normal_initializer())
 		# output gate parameters
-		self.wo = tf.get_variable(name = 'lstm_w_output_gate', shape = w_shape)
-		self.uo = tf.get_variable(name = 'lstm_u_output_gate', shape = u_shape)
-		self.bo = tf.get_variable(name = 'lstm_b_output_gate', shape = b_shape)
+		self.wo = tf.get_variable(name = 'lstm_w_output_gate', shape = w_shape, initializer = tf.glorot_normal_initializer())
+		self.uo = tf.get_variable(name = 'lstm_u_output_gate', shape = u_shape, initializer = tf.glorot_normal_initializer())
+		self.bo = tf.get_variable(name = 'lstm_b_output_gate', shape = b_shape, initializer = tf.glorot_normal_initializer())
 		# cell state parameters
-		self.wc = tf.get_variable(name = 'lstm_w_cell_state', shape = w_shape)
-		self.uc = tf.get_variable(name = 'lstm_u_cell_state', shape = u_shape)
-		self.bc = tf.get_variable(name = 'lstm_b_cell_state', shape = b_shape)
+		self.wc = tf.get_variable(name = 'lstm_w_cell_state', shape = w_shape, initializer = tf.glorot_normal_initializer())
+		self.uc = tf.get_variable(name = 'lstm_u_cell_state', shape = u_shape, initializer = tf.glorot_normal_initializer())
+		self.bc = tf.get_variable(name = 'lstm_b_cell_state', shape = b_shape, initializer = tf.glorot_normal_initializer())
 
 		self.trainable_variables = [self.wf, self.uf, self.bf, self.wi, self.ui, self.bi, self.wo, self.uo, self.bo, self.wc, self.uc, self.bc]
 

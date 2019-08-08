@@ -10,10 +10,12 @@ def epochs():
 	return 100
 
 def learning_rate(epoch, steps):
-	return 0.01
+	# if(epoch > 40):
+	# 	return 0.001
+	return 0.001
 
 def lstm_layers():
-	return [128, 128, 64]
+	return [128, 128]
 
 def fc_layers():
 	return [32]

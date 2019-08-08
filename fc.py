@@ -9,8 +9,8 @@ class fc:
 		w_shape = [input_dims, output_dims]
 		b_shape = [output_dims]
 		
-		self.w = tf.get_variable(name = 'w', shape = w_shape)
-		self.b = tf.get_variable(name = 'b', shape = b_shape)
+		self.w = tf.get_variable(name = 'w', shape = w_shape, initializer = tf.glorot_normal_initializer())
+		self.b = tf.get_variable(name = 'b', shape = b_shape, initializer = tf.glorot_normal_initializer())
 		self.trainable_variables = [self.w, self.b]
 
 	def flow(self, input_tensor, activation = 'TANH'):

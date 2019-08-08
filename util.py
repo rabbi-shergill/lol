@@ -24,9 +24,10 @@ def progress(epoch, perc):
 def gather(images, window_size):	# batch_size x size x size
 	result = []
 	image_size = np.shape(images)[1]
-	for x in range(0, image_size, window_size):
-		for y in range(0, image_size, window_size):
+	for x in range(0, image_size - image_size % window_size, window_size):
+		for y in range(0, image_size - image_size % window_size, window_size):
 			portion = np.transpose(images[:, x: x + window_size, y: y + window_size], (1, 2, 0))
+			# print(np.shape(portion))
 			# print(np.shape(portion))
 			portion = np.reshape(portion, [window_size ** 2, len(images)])
 			portion = np.transpose(portion, [1, 0])

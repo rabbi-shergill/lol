@@ -15,10 +15,10 @@ import numpy as np
 
 print('Loading and preparing data', end = '')
 (images, labels), (t_images, t_labels) = tf.keras.datasets.mnist.load_data()
-images = np.asarray(images[: 5000]).astype(np.float32) * 2.0 / 255.0 - 1.0
-t_images = np.asarray(t_images[: 1000]).astype(np.float32) * 2.0 / 255.0 - 1.0
-labels = np.asarray(labels[: 5000])
-t_labels = np.asarray(t_labels[: 1000])
+images = np.asarray(images[: 8 * 1000]).astype(np.float32) * 2.0 / 255.0 - 1.0
+t_images = np.asarray(t_images[: 8 * 200]).astype(np.float32) * 2.0 / 255.0 - 1.0
+labels = np.asarray(labels[: 8 * 1000])
+t_labels = np.asarray(t_labels[: 8 * 200])
 images = gather(images, config.window_size())
 t_images = gather(t_images, config.window_size())
 TIME_STEPS = (28 // config.window_size()) ** 2
@@ -44,13 +44,13 @@ input_labels_one_hot = tf.one_hot(input_labels, 10)
 loss = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits_v2(labels = input_labels_one_hot, logits = logits))
 classes = tf.cast(tf.argmax(logits, 1), tf.int32)
 success = tf.reduce_sum(tf.cast(tf.equal(classes, input_labels), tf.float32))
-optimizer = tf.train.AdamOptimizer(learning_rate).minimize(loss)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)
 
 
 session = tf.Session()
 session.run(tf.global_variables_initializer())
-print('\rModel Initialised')
-
+print('\rModel Initialized')
+# exit(0)
 
 def train(epoch, global_step):
 	print('Epoch {:3d} {:3.2f}'.format(epoch, 0), end = '')
@@ -93,4 +93,4 @@ for epoch in range(config.epochs()):
 	train(epoch, global_step)
 	train_data_results = test(images, labels)
 	test_data_results = test(t_images, t_labels)
-	print('\rEpoch {} {} {}'.format(epoch, train_data_results, test_data_results))
+	print('\rEpoch {:3d} {} {}'.format(epoch, train_data_results, test_data_results))
