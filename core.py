@@ -41,7 +41,7 @@ global_step = 0
 learning_rate = tf.placeholder(tf.float32)
 logits = model.flow(input_tensor_list, config.batch_size())
 input_labels_one_hot = tf.one_hot(input_labels, 10)
-loss = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits_v2(labels = input_labels_one_hot, logits = logits))
+loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(labels = input_labels_one_hot, logits = logits))
 classes = tf.cast(tf.argmax(logits, 1), tf.int32)
 success = tf.reduce_sum(tf.cast(tf.equal(classes, input_labels), tf.float32))
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)
