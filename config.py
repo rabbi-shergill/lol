@@ -9,7 +9,7 @@ def window_size():
 def epochs():
 	return 100
 
-def learning_rate(epoch, steps):
+def learning_rate(epoch, steps):	#
 	if(epoch > 5):
 		return 0.01
 	return 0.1
