@@ -15,10 +15,10 @@ import numpy as np
 
 print('Loading and preparing data', end = '')
 (images, labels), (t_images, t_labels) = tf.keras.datasets.mnist.load_data()
-images = np.asarray(images[: 8 * 1000]).astype(np.float32) * 2.0 / 255.0 - 1.0
-t_images = np.asarray(t_images[: 8 * 200]).astype(np.float32) * 2.0 / 255.0 - 1.0
-labels = np.asarray(labels[: 8 * 1000])
-t_labels = np.asarray(t_labels[: 8 * 200])
+images = np.asarray(images).astype(np.float32) * 2.0 / 255.0 - 1.0
+t_images = np.asarray(t_images).astype(np.float32) * 2.0 / 255.0 - 1.0
+labels = np.asarray(labels)
+t_labels = np.asarray(t_labels)
 images = gather(images, config.window_size())
 t_images = gather(t_images, config.window_size())
 TIME_STEPS = (28 // config.window_size()) ** 2
