@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 def batch_size():
-	return 8
+	return 64
 
 def window_size():
 	return 2
